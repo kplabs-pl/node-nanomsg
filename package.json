@@ -4,6 +4,8 @@
   "description": "Node bindings for nanomsg",
   "main": "lib/index.js",
   "dependencies": {
+    "node-pre-gyp-github": "^1.4.3",
+    "node-pre-gyp": "^0.15.0",
     "bindings": "1.2.1",
     "nan": "2.14.0"
   },
@@ -17,9 +19,16 @@
     "tape": "4.11.0"
   },
   "scripts": {
+    "install": "./node_modules/.bin/node-pre-gyp install --fallback-to-build",
     "test": "find test/*.js test/standalone/*.js | xargs -n 1 node | node_modules/tap-nyan/bin/cmd.js",
     "beaut": "find . -path ./node_modules -prune -or -name '*.js' -exec sh -c 'cp -a {} {}.tmp; esformatter {} >{}.tmp && mv {}.tmp {}' \\;",
     "symbols": "cd test && ruby mksymbols.rb > symbols.js"
+  },
+  "binary": {
+    "module_name": "node_nanomsg",
+    "module_path": "./build/node/",
+    "host": "https://github.com/kplabs-pl/node-nanomsg/releases/download/",
+    "remote_path": "{version}"
   },
   "keywords": [
     "nanomsg",
@@ -31,7 +40,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nickdesaulniers/node-nanomsg.git"
+    "url": "https://github.com/kplabs-pl/node-nanomsg.git"
   },
   "author": "Nick Desaulniers <ndesaulniers@mozilla.com> (http://nickdesaulniers.github.io)",
   "contributors": [

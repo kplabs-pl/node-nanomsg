@@ -15,3 +15,4 @@ nanocat
 .libs
 v8
 package-lock.json
+.idea/
